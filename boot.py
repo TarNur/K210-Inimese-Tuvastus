@@ -14,7 +14,7 @@ def lcd_show_except(e):
     lcd.display(img)
 
 def formatTime(timeRan, timeUnseen):
-	formattedTimeMinutes, formattedTimeSeconds = divmod(timeRan, 60)
+    formattedTimeMinutes, formattedTimeSeconds = divmod(timeRan, 60)
     formattedTimeHours, formattedTimeMinutes = divmod(formattedTimeMinutes, 60)
 
     unseenTimeMinutes, unseenTimeSeconds = divmod(timeUnseen, 60)
