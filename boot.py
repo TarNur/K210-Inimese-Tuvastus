@@ -41,6 +41,7 @@ def main(anchors, labels = None, model_addr="/sd/mobilnet7_5.kmodel", sensor_win
         timeRan = 0
         timeUnseen = 0
         lastSeen = 0
+	endTime = 0
         task = None
         task = kpu.load(model_addr)
         a = kpu.set_outputs(task, 0, 7, 7, 30)
@@ -69,7 +70,6 @@ def main(anchors, labels = None, model_addr="/sd/mobilnet7_5.kmodel", sensor_win
             a = img.draw_string(0, 0, "people:%d" %(people), scale=2, color=(255, 0, 0))
             a = img.draw_string(140,0, ("%2.1ffps" %(fps)), color=(255,0,0), scale=2)
 
-            endTime = (time.ticks_ms()/1000) - startTime
             timeRan = timeRan + endTime
             if (timeRan - lastSeen) > 180:
                 timeUnseen = timeUnseen + endTime
@@ -81,6 +81,8 @@ def main(anchors, labels = None, model_addr="/sd/mobilnet7_5.kmodel", sensor_win
             img = img.resize(320,224)
 
             a = lcd.display(img)
+		
+	    endTime = (time.ticks_ms()/1000) - startTime
     except Exception as e:
         raise e
     finally:
