@@ -30,7 +30,8 @@ def main(anchors, labels = None, model_addr="/sd/mobilnet7_5.kmodel", sensor_win
     sensor.set_windowing(sensor_window)
     sensor.set_hmirror(False)
     sensor.set_vflip(True)
-    sensor.skip_frames(10)
+    # sensor.set_brightness(2)	
+    sensor.skip_frames(30)
     sensor.run(1)
 
     lcd.init(type=1)
