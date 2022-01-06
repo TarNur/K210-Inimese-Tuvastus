@@ -1,6 +1,6 @@
 # person detector boot.py
 
-import sensor, image, lcd, time, video
+import sensor, image, lcd, time
 import KPU as kpu
 import gc, sys
 
@@ -30,15 +30,13 @@ def main(anchors, labels = None, model_addr="/sd/mobilnet7_5.kmodel", sensor_win
     sensor.set_windowing(sensor_window)
     sensor.set_hmirror(False)
     sensor.set_vflip(True)
-    # sensor.set_brightness(2)	
+    # sensor.set_brightness(1)	
     sensor.skip_frames(30)
     sensor.run(1)
 
     lcd.init(type=1)
     lcd.rotation(lcd_rotation)
     lcd.clear(lcd.WHITE)
-
-    # v = video.open("/sd/capture.avi", record=1, interval=100000, quality=50)
 
     try:
         timeRan = 0
@@ -84,9 +82,7 @@ def main(anchors, labels = None, model_addr="/sd/mobilnet7_5.kmodel", sensor_win
             img = img.resize(320,224)
 
             a = lcd.display(img)
-	
-	    # img_len = v.record(img)
-		
+			
 	    endTime = (time.ticks_ms()/1000) - startTime
     except Exception as e:
         raise e
